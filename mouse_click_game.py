@@ -14,11 +14,11 @@ def countdown(geri_Sayim):
         geri_Sayim -= 1
 
 
-# Ekran boyutları
+
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-# Renkler
+
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -26,36 +26,35 @@ PINK= (255, 20, 147)
 
 pygame.init()
 
-# Ekranı oluştur
+
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Objenin Kaybolup Belirmesi")
 
-# Objeyi oluştur
+
 obje = pygame.Surface((50, 50))
 obje.fill(PINK)
 
-# Objeyi rastgele bir konuma yerleştir
+
 obje_x = random.randint(0, SCREEN_WIDTH - obje.get_width())
 obje_y = random.randint(0, SCREEN_HEIGHT - obje.get_height())
 obje_rect = obje.get_rect().move(obje_x, obje_y)
 
-# Skor değişkeni
+
 skor = 0
 
-# Yüksek çözünürlüklü zamanlayıcı
+
 clock = pygame.time.Clock()
 
-# Objenin kaybolma zamanlayıcısı
+
 kaybolma_zamanlayici = pygame.time.get_ticks() + 1000
 
-# Countdown timer event
+
 COUNTDOWN_EVENT = pygame.USEREVENT + 1
 
-# Set countdown timer
 pygame.time.set_timer(COUNTDOWN_EVENT, 1000)
 
 while True:
-    # Olayları işle
+  
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -71,7 +70,7 @@ while True:
         elif event.type == COUNTDOWN_EVENT:
             geri_Sayim -= 1
 
-        # Objeyi çiz
+        
     screen.fill(BLACK)
     if pygame.time.get_ticks() >= kaybolma_zamanlayici:
         obje_x = random.randint(0, SCREEN_WIDTH - obje.get_width())
@@ -86,7 +85,7 @@ while True:
     skor_metni = font.render("skor :" + str(skor), True, (255, 255, 0))
     screen.blit(skor_metni, (3, 3))
 
-    # Ekrana geri sayım süresini yazdır
+ 
 
     font = pygame.font.SysFont("Arial", 48)
     geri_sayim_metni = font.render("time : " + str(geri_Sayim), True, RED)
